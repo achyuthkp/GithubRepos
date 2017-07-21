@@ -1,0 +1,32 @@
+<div>
+	<div class="col-md-12" id="search-box">
+		<form id='search-form'>  
+			<div class="input-group">
+				<input id='search-text' name='q' type="text" class="form-control" placeholder="Type a valid Github username" ng-model="search" autocomplete="off">
+				<span class="input-group-btn">
+					<button id='search-button' class="btn btn-default" type="submit" ng-click="runSearch()">Get repositories</button>
+				</span>
+			</div>
+		</form>
+	</div>
+
+	<div class="result-list" ng-class="{loading: loading}">
+		<div class='md-padding' layout="row" layout-wrap>
+        	<md-card style="width: 420px;" ng-repeat="repo in repos | limitTo:10">
+        		<md-card-content>
+        			<a ng-href="https://www.github.com/{{repo.full_name}}" target="_blank"><h3 class="repo-header" ng-bind=repo.name></h3></a>
+					<p ng-bind=repo.description></p>
+				</md-card-content>
+				<md-card-footer>
+					<ul class="repo-details">
+						<li ng-bind="repo.language"></li>
+						<li><img src="../images/star.png"></li>
+						<li ng-bind="repo.stargazers_count"></li>
+						<li><img src="../images/fork.png"></li>
+						<li ng-bind="repo.forks_count"></li>
+					</ul>
+				</md-card-footer>
+			</md-card>
+		</div>
+	</div>
+</div>
